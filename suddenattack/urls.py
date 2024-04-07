@@ -1,24 +1,27 @@
 from django.contrib import admin
-from rest_framework.permissions import AllowAny
 from drf_yasg.views import get_schema_view
+from django.urls import path, re_path, include
+from rest_framework import permissions
 from drf_yasg import openapi
-from django.urls import path, re_path
-
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Snippets API",
+        title="Sudden Attack API",
         default_version="v1",
-        description="Test description",
+        description="Sudden Attack API Documentation",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="contact@snippets.local"),
         license=openapi.License(name="BSD License"),
     ),
     public=True,
-    permission_classes=[AllowAny],
+    permission_classes=(permissions.AllowAny,),
 )
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("user/", include("user.urls")),
+    path("group/", include("group.urls")),
+    path("board/", include("board.urls")),
     re_path(
         r"^swagger(?P<format>\.json|\.yaml)$",
         schema_view.without_ui(cache_timeout=0),
