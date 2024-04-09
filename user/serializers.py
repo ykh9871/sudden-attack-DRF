@@ -5,7 +5,7 @@ from .models import User, Occupation
 class OccupationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Occupation
-        fields = ["name"]
+        fields = ["id", "name"]
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -29,7 +29,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserInfoSerializer(serializers.ModelSerializer):
-    occupation_name = serializers.CharField(source="occupation.name")
+    occupation = OccupationSerializer()
 
     class Meta:
         model = User
@@ -37,7 +37,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
             "username",
             "nickname",
             "email",
-            "occupation_name",
+            "occupation",
             "created_at",
             "modified_at",
         ]
