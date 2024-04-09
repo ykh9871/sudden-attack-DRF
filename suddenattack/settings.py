@@ -28,6 +28,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+    "SECURITY_DEFINITIONS": {
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT Token",
+        }
+    },
+    "SECURITY_REQUIREMENTS": [{"BearerAuth": []}],
+}
+
+AUTH_USER_MODEL = "user.User"
 
 # Application definition
 
