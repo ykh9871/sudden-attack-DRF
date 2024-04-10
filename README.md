@@ -7,9 +7,16 @@
 
 실행방법
 
-```
-python manage.py runserver
-```
+1. 로컬
+  ```
+  python manage.py runserver
+  ```
+
+2. 도커
+  ```
+  docker-compose -f docker-compose.yaml up --build
+  docker compose up -d
+  ```
 
 ## Git Convention
 
